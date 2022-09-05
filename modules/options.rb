@@ -14,7 +14,7 @@ module Options
     puts '10 - Add a music album'
     puts '11 - Add a movie'
     puts '12 - Add a game'
-    puts '13 - Quit'
+    puts '13 - Exit'
   end
 
   def list_genres
