@@ -9,7 +9,7 @@ module App
       @games = []
     end
 
-    # input the methods you create for various classes
+    # call the methods you create for various classes
     def operation(input)
       case input
 
@@ -44,7 +44,7 @@ module App
     end
   end
 
-  def self.take_input(range)
+  def self.extract_input(range)
     input = gets.chomp
     return "\n'#{input}' is not a valid input.\nPlease try again" unless range.include?(input.to_i)
 
