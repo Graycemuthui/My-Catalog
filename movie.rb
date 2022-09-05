@@ -1,6 +1,7 @@
 require_relative 'item'
 class Movie < Item
-  attr_accessor :id, :name, :publish_date, :silet
+  attr_reader :id
+  attr_accessor :name, :publish_date, :silet
 
   def initialize(name, publish_date, silet)
     super(publish_date)
@@ -10,6 +11,6 @@ class Movie < Item
   end
 
   def can_be_archived?
-    super && @silet == true
+    super || @silet == true
   end
 end
