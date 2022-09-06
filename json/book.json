@@ -1,0 +1,18 @@
+[
+  {
+    "publish_date": "2022-05-01",
+    "author": "John Doe",
+    "publisher": "Mozilla",
+    "cover_state": "Good",
+    "color": "Blue",
+    "label": "Science Fiction"
+  },
+  {
+    "publish_date": "2022-05-02",
+    "author": "Jane Doe",
+    "publisher": "Macmillan",
+    "cover_state": "Good",
+    "color": "Yellow",
+    "label": "literature"
+  }
+]

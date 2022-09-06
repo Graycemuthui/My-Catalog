@@ -1,0 +1,16 @@
+[
+  {
+    "movie_name": "The man from toronto",
+    "movie_genre": "Comedy",
+    "silent": false,
+    "publish_date": "2015-02-21",
+    "movie_source": "Netflix"
+  },
+  {
+    "movie_name": "Top Gun maveric",
+    "movie_genre": "action-thriller",
+    "silent": true,
+    "publish_date": "2022-07-21",
+    "movie_source": "Online"
+  }
+]
