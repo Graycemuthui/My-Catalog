@@ -2,7 +2,7 @@ module MusicAlbums
   def list_music_albums
     puts 'Music albums list is empty! Add a music album.' if @music_albums.empty?
     music_albums.each_with_index do |music_album, index|
-      s = 'Name of the album : #{, music_albums.name} - published: #{music_album.publish_date}'
+      s = "Last played at: #{music_album.name} - published: #{music_album.publish_date}"
       p "#{index})  On Spotify: #{music_album.on_spotify} - " + s
     end
   end
