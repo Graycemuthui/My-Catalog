@@ -3,11 +3,18 @@ require_relative './author_module'
 require_relative './games_module'
 require_relative '../game'
 require_relative '../author'
+require_relative './genre_module'
+require_relative './music_album_module'
+require_relative '../genre'
+require_relative '../music_album'
 
 class Catalog
   include Options
   include Authors
   include Games
+  include Genres
+  include MusicAlbums
+
   attr_reader :books, :music_albums, :movies, :games
 
   def initialize
@@ -29,14 +36,21 @@ class Catalog
     end
   end
 
-  # call the methods you create for various classes
   def operation1(input)
     case input
 
     when 1
       puts "\nList @books"
     when 2
-      puts "\nList @music_albums"
+      list_music_albums
+    else
+      operation4(input)
+    end
+  end
+
+  def operation4(input)
+    case input
+
     when 3
       puts "\nList @movies"
     when 4
@@ -51,6 +65,7 @@ class Catalog
 
     when 5
       list_genres
+
     when 6
       list_lables
     when 7
@@ -68,7 +83,7 @@ class Catalog
     when 9
       puts "\nAdd @Book"
     when 10
-      puts "\nAdd @music album"
+      add_music_album
     when 11
       puts "\nAdd @movie"
     when 12
