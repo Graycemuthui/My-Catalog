@@ -1,6 +1,6 @@
 module Options
-  RANGE = (1..13).freeze
   def self.options
+    puts "\n\nPlease choose an option by entering a number:"
     puts "\n"
     puts '1 - List all books'
     puts '2 - List all music albums'
@@ -15,29 +15,5 @@ module Options
     puts '11 - Add a movie'
     puts '12 - Add a game'
     puts '13 - Exit'
-  end
-
-  def list_genres
-    puts "\nSelect One From The List"
-    puts '1 - Comedy'
-    puts '2- Thriller'
-  end
-
-  def list_lables
-    puts "\nSelect One From The List"
-    puts '1 - Gist'
-    puts '2 - New'
-  end
-
-  def list_sources
-    puts "\nSelect One From The List"
-    puts '1 - From a friend'
-    puts '2 - Online shop'
-  end
-
-  def list_authors
-    puts "\nSelect One From The List"
-    puts '1 - Stephen Kin'
-    puts '2 - J. K. Rowling'
   end
 end
