@@ -3,14 +3,14 @@ class Movie < Item
   attr_reader :id
   attr_accessor :name, :publish_date, :silet
 
-  def initialize(name, publish_date, silet)
+  def initialize(name, publish_date, silent)
     super(publish_date)
     @id = Random.rand(1...1000)
     @name = name
-    @silet = silet
+    @silent = silent
   end
 
   def can_be_archived?
-    super || @silet == true
+    super || @silent == true
   end
 end
