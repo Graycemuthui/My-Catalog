@@ -3,18 +3,26 @@ require_relative './author_module'
 require_relative './games_module'
 require_relative '../game'
 require_relative '../author'
+require_relative '../movie'
+require_relative '../source'
+require_relative './movies_module'
+require_relative './sources_module'
+require 'date'
 
 class Catalog
   include Options
   include Authors
   include Games
-  attr_reader :books, :music_albums, :movies, :games
+  include Movies
+  include Sources 
+  attr_reader :books, :music_albums, :movies, :games, :sources
 
   def initialize
     @books = []
     @music_albums = []
     @movies = []
     @games = []
+    @sources = []
   end
 
   def act_regarding_input
@@ -38,7 +46,7 @@ class Catalog
     when 2
       puts "\nList @music_albums"
     when 3
-      puts "\nList @movies"
+      list_movie
     when 4
       list_games
     else
@@ -70,7 +78,7 @@ class Catalog
     when 10
       puts "\nAdd @music album"
     when 11
-      puts "\nAdd @movie"
+     add_movie
     when 12
       add_game
     else
