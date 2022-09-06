@@ -1,4 +1,13 @@
+require_relative './options'
+require_relative './author_module'
+require_relative './games_module'
+require_relative '../game'
+require_relative '../author'
+
 class Catalog
+  include Options
+  include Authors
+  include Games
   attr_reader :books, :music_albums, :movies, :games
 
   def initialize
@@ -8,27 +17,54 @@ class Catalog
     @games = []
   end
 
+  def act_regarding_input
+    loop do
+      Options.options
+      choice = gets.to_i
+      if choice == 13
+        puts 'Thank You for using this app!'
+        break
+      end
+      operation1(choice)
+    end
+  end
+
   # call the methods you create for various classes
-  def operation(input)
+  def operation1(input)
     case input
 
     when 1
       puts "\nList @books"
-
     when 2
       puts "\nList @music_albums"
     when 3
       puts "\nList @movies"
     when 4
-      puts "\nList @games"
+      list_games
+    else
+      operation2(input)
+    end
+  end
+
+  def operation2(input)
+    case input
+
     when 5
-      puts "\nList all genres"
+      list_genres
     when 6
-      puts "\nList all labels"
+      list_lables
     when 7
-      puts "\nList all authors"
+      list_authors
     when 8
-      puts "\nList all sources"
+      list_sources
+    else
+      operation3(input)
+    end
+  end
+
+  def operation3(input)
+    case input
+
     when 9
       puts "\nAdd @Book"
     when 10
@@ -36,16 +72,9 @@ class Catalog
     when 11
       puts "\nAdd @movie"
     when 12
-      puts "\nAdd @game"
+      add_game
     else
-      puts input
+      puts 'You put the wrong input. Please enter a number between 1 and 13.'
     end
   end
-end
-
-def self.extract_input(range)
-  input = gets.chomp
-  return "\n'#{input}' is not valid.\nPlease try again" unless range.include?(input.to_i)
-
-  input.to_i
 end
