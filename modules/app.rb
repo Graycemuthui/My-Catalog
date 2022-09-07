@@ -7,6 +7,7 @@ require_relative './genre_module'
 require_relative './music_album_module'
 require_relative '../genre'
 require_relative '../music_album'
+require 'json'
 
 class Catalog
   include Options
@@ -22,6 +23,7 @@ class Catalog
     @music_albums = []
     @movies = []
     @games = []
+    load_game
   end
 
   def act_regarding_input
@@ -29,6 +31,8 @@ class Catalog
       Options.options
       choice = gets.to_i
       if choice == 13
+        save_authors
+        save_games
         puts 'Thank You for using this app!'
         break
       end
