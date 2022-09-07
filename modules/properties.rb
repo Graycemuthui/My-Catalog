@@ -27,11 +27,4 @@ module Properties
     genre
   end
 
-  # def define_source
-  #   print 'Source name:'
-  #   name = gets.chomp
-  #   source = Source.new(name)
-  #   @sources << source
-  #   source
-  # end
 end
