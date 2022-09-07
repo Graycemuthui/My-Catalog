@@ -13,6 +13,7 @@ require_relative './genre_module'
 require_relative './music_album_module'
 require_relative '../genre'
 require_relative '../music_album'
+require_relative './properties'
 require 'json'
 
 class Catalog
@@ -23,6 +24,7 @@ class Catalog
   include Sources
   include Genres
   include MusicAlbums
+  include Properties
 
   attr_reader :books, :music_albums, :movies, :games
 
@@ -37,6 +39,8 @@ class Catalog
     @labels = []
     load_game
     load_authors
+    load_album
+    load_genre
   end
 
   def act_regarding_input
@@ -46,6 +50,8 @@ class Catalog
       if choice == 13
         save_authors
         save_games
+        save_album
+        save_genre
         puts 'Thank You for using this app!'
         break
       end

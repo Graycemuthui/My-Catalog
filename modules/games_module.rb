@@ -22,29 +22,13 @@ module Games
     p 'Add label for this game:'
     game.add_label(define_label)
 
+    game.add_genre(define_genre)
+
+    game.add_source(define_source)
+
     game.move_to_archive
     @games << game
     puts "Game #{mplayer} created successfully."
-  end
-
-  def define_author
-    print 'Author first name:'
-    first_name = gets.chomp
-    print 'Author last name:'
-    last_name = gets.chomp
-    author = Author.new(first_name, last_name)
-    @authors << author
-    author
-  end
-
-  def define_label
-    print 'Label title:'
-    label_title = gets.chomp
-    print 'Label color:'
-    label_color = gets.chomp
-    label = Label.new(label_title, label_color)
-    @labels << label
-    label
   end
 
   def save_games
