@@ -15,17 +15,7 @@ module Games
     print 'Published: '
     published = gets.chomp
     game = Game.new(mplayer, last_played_at, published)
-
-    p 'Add author for this game:'
-    game.add_author(define_author)
-
-    p 'Add label for this game:'
-    game.add_label(define_label)
-
-    game.add_genre(define_genre)
-
-    game.add_source(define_source)
-
+    add_properties(game)
     game.move_to_archive
     @games << game
     puts "Game #{mplayer} created successfully."
@@ -45,8 +35,8 @@ module Games
         genre: game.genre.names,
         source: game.source.name
       }
-      File.open('./json/games.json', 'w') { |f| f.puts game_hash.to_json }
     end
+    File.open('./json/games.json', 'w') { |f| f.puts game_hash.to_json }
   end
 
   def load_game

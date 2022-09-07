@@ -10,8 +10,6 @@ module MusicAlbums
   def add_music_album
     print 'Name of the Album: '
     album_name = gets.chomp
-    print 'Name of the genre: '
-    g_name = gets.chomp
     print 'Published date: '
     published = gets.chomp
     print 'On Spotify? (y/n): '
@@ -26,10 +24,8 @@ module MusicAlbums
       puts 'Invalid option. Please try again.'
     end
 
-    genre = Genre.new(g_name)
-    @genres.push(genre)
-
     album = MusicAlbum.new(album_name, published, album_spotify)
+    add_properties(album)
     @music_albums << album
 
     puts "Music album #{album_name} created successfully."
@@ -41,17 +37,25 @@ module MusicAlbums
       album << {
         name: music_album.name,
         publish_date: music_album.publish_date,
-        on_spotify: music_album.on_spotify
+        on_spotify: music_album.on_spotify,
+        author_first_name: music_album.author.first_name,
+        author_last_name: music_album.author.last_name,
+        label_title: music_album.label.title,
+        label_color: music_album.label.color,
+        genre: music_album.genre.names,
+        source: music_album.source.name
       }
-      File.open('./json/music_albums.json', 'w') { |f| f.puts album.to_json }
     end
+    File.open('./json/music_albums.json', 'w') { |f| f.puts album.to_json }
   end
 
   def load_album
-    album_file = File.exist?('./json/music_album.json') ? File.read('.json/music_albums.json') : '[]'
+    album_file = File.exist?('./json/music_albums.json') ? File.read('./json/music_albums.json') : '[]'
     album_h = JSON.parse(album_file)
     album_h.each do |album|
-      @music_albums << MusicAlbum.new(album['name'], album['genre'], album['publish_date'], album['on_spotify'])
+      album_new = MusicAlbum.new(album['name'], album['publish_date'], album['on_spotify'])
+      load_properties(album, album_new)
+      @music_albums << album_new
     end
   end
 end

@@ -49,4 +49,13 @@ module Properties
     @genres << genre
     @sources << source
   end
+
+  def add_properties(item)
+    p "Add author for this #{item.class}:"
+    item.add_author(define_author)
+    p "Add label for this #{item.class}:"
+    item.add_label(define_label)
+    item.add_genre(define_genre)
+    item.add_source(define_source)
+  end
 end

@@ -12,8 +12,8 @@ module Authors
 
     @authors.each do |author|
       author_hash << { first_name: author.first_name, last_name: author.last_name, id: author.id, items: author.items }
-      File.open('./json/authors.json', 'w') { |f| f.puts author_hash.to_json }
     end
+    File.open('./json/authors.json', 'w') { |f| f.puts author_hash.to_json }
   end
 
   def load_authors
