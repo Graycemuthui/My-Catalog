@@ -24,8 +24,6 @@ module Games
 
     game.add_genre(define_genre)
 
-    game.add_source(define_source)
-
     game.move_to_archive
     @games << game
     puts "Game #{mplayer} created successfully."
