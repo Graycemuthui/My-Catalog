@@ -42,12 +42,12 @@ module Games
         author_first_name: game.author.first_name,
         author_last_name: game.author.last_name
       }
-      File.open('games.json', 'w') { |f| f.puts game_hash.to_json }
+      File.open('./json/games.json', 'w') { |f| f.puts game_hash.to_json }
     end
   end
 
   def load_game
-    game_file = File.exist?('./games.json') ? File.read('./games.json') : '[]'
+    game_file = File.exist?('./json/games.json') ? File.read('./json/games.json') : '[]'
     game_h = JSON.parse(game_file)
     game_h.each do |game|
       game_new = Game.new(game['mulitiplayer'], game['last_played_at'], game['publish_date'])
