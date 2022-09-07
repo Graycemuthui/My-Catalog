@@ -8,13 +8,13 @@ module LabelModule
       end
     end
   end
-#   def add_label
-#     puts 'Enter the title of the label:'
-#     title = gets.chomp
-#     puts 'Enter the color of the label:'
-#     color = gets.chomp
-#     label = Label.new(title, color)
-#     puts 'Label created successfully!'
-#     @labels << label
-#   end
+  #   def add_label
+  #     puts 'Enter the title of the label:'
+  #     title = gets.chomp
+  #     puts 'Enter the color of the label:'
+  #     color = gets.chomp
+  #     label = Label.new(title, color)
+  #     puts 'Label created successfully!'
+  #     @labels << label
+  #   end
 end
