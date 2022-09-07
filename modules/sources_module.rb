@@ -37,4 +37,5 @@ module Sources
       @sources << obj
     end
   end
+
 end
