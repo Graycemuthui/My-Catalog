@@ -24,18 +24,17 @@ module Sources
   def dump_sources
     sources = @sources.map { |src| [src.name] }
     store = JSON.dump(sources)
-    File.write('sources.json', store)
+    File.write('./json/sources.json', store)
   end
 
   def load_sources
-    return unless File.exist?('sources.json')
+    return unless File.exist?('./json/sources.json')
 
-    sources = JSON.parse(File.read('sources.json'))
+    sources = JSON.parse(File.read('json/sources.json'))
     sources.each do |source|
       obj = Source.new(*source[1..])
       obj.id = source.first
       @sources << obj
     end
   end
-
 end
