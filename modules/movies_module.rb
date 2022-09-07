@@ -31,4 +31,29 @@ module Movies
       puts "movie name: #{movie.name},\nPublished date: #{movie.publish_date},\nsilent #{movie.silent}\n\n"
     end
   end
+
+  def load_movies
+    data = []
+    file = './movies.json'
+    if File.exist?(file)
+      JSON.parse(File.read(file)).each do |movie|
+        data.push(Movie.new(movie['name'], movie['publish_date'], movie['silent']))
+      end
+    else
+      File.write(file, [])
+    end
+    data
+  end
+
+  def save_movies
+    movies_hash = []
+    @movies.each do |mov|
+      movies_hash << {
+        name: mov.name,
+        publish_date: mov.publish_date,
+        silent: mov.silent
+      }
+      File.open('./movies.json', 'w') { |f| f.puts movies_hash.to_json }
+    end
+  end
 end
