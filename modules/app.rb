@@ -8,6 +8,11 @@ require_relative '../source'
 require_relative './movies_module'
 require_relative './sources_module'
 require 'date'
+require_relative './genre_module'
+require_relative './music_album_module'
+require_relative '../genre'
+require_relative '../music_album'
+require 'json'
 
 class Catalog
   include Options
@@ -15,7 +20,11 @@ class Catalog
   include Games
   include Movies
   include Sources 
-  attr_reader :books, :music_albums, :movies, :games, :sources
+  include Genres
+  include MusicAlbums
+
+  attr_reader :books, :music_albums, :movies, :games
+
 
   def initialize
     @books = []
@@ -23,6 +32,8 @@ class Catalog
     @movies = []
     @games = []
     @sources = []
+    load_game
+
   end
 
   def act_regarding_input
@@ -30,6 +41,8 @@ class Catalog
       Options.options
       choice = gets.to_i
       if choice == 13
+        save_authors
+        save_games
         puts 'Thank You for using this app!'
         break
       end
@@ -37,14 +50,21 @@ class Catalog
     end
   end
 
-  # call the methods you create for various classes
   def operation1(input)
     case input
 
     when 1
       puts "\nList @books"
     when 2
-      puts "\nList @music_albums"
+      list_music_albums
+    else
+      operation4(input)
+    end
+  end
+
+  def operation4(input)
+    case input
+
     when 3
       list_movie
     when 4
@@ -59,6 +79,7 @@ class Catalog
 
     when 5
       list_genres
+
     when 6
       list_lables
     when 7
@@ -76,7 +97,7 @@ class Catalog
     when 9
       puts "\nAdd @Book"
     when 10
-      puts "\nAdd @music album"
+      add_music_album
     when 11
      add_movie
     when 12
