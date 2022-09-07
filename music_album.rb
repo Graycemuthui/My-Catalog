@@ -1,14 +1,17 @@
 require './item'
 
-class MusicAlbum < item
-  attr_accessor :on_spotify
+class MusicAlbum < Item
+  attr_accessor :name, :publish_date, :on_spotify
+  attr_reader :id
 
-  def initialize(publish_date, archived, on_spotify: false)
-    super(publish_date, archived: archived)
+  def initialize(name, publish_date, on_spotify)
+    super(publish_date)
+    @id = Random.rand(1...1000)
+    @name = name
     @on_spotify = on_spotify
   end
 
   def can_be_archived?
-    @on_spotify && Date.today.year - Date.parse(@publish_date).year > 10
+    super && @on_spotify == true
   end
 end
