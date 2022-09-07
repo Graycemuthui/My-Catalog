@@ -31,6 +31,7 @@ class Catalog
     @movies = []
     @games = []
     @sources = []
+    @genres = []
     load_game
   end
 
