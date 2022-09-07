@@ -10,6 +10,8 @@ module MusicAlbums
   def add_music_album
     print 'Name of the Album: '
     album_name = gets.chomp
+    print 'Name of the genre: '
+    g_name = gets.chomp
     print 'Published date: '
     published = gets.chomp
     print 'On Spotify? (y/n): '
@@ -23,8 +25,13 @@ module MusicAlbums
     else
       puts 'Invalid option. Please try again.'
     end
+
+    genre = Genre.new(g_name)
+    @genres.push(genre)
+
     album = MusicAlbum.new(album_name, published, album_spotify)
     @music_albums << album
+
     puts "Music album #{album_name} created successfully."
   end
 end

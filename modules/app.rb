@@ -16,7 +16,7 @@ class Catalog
   include Genres
   include MusicAlbums
 
-  attr_reader :books, :music_albums, :movies, :games
+  attr_reader :books, :music_albums, :movies, :games, :genres
 
   def initialize
     @books = []
@@ -24,6 +24,7 @@ class Catalog
     @movies = []
     @games = []
     load_game
+    genres = []
   end
 
   def act_regarding_input
