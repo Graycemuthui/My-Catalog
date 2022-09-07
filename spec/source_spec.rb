@@ -22,7 +22,8 @@ describe Source do
 
   context 'When adding a movie into a source' do
     it 'should add the movie to the source' do
-      expect(@source.add_item(@movie)).to include(@movie)
+      @source.add_item(@movie)
+      expect(@source.items).to include @movie
     end
   end
 end
