@@ -13,28 +13,23 @@ module Sources
     puts ''
   end
 
-  def load
-    load_sources
-  end
-
-  def dump
-    dump_sources
-  end
-
-  def dump_sources
-    sources = @sources.map { |src| [src.name] }
-    store = JSON.dump(sources)
-    File.write('./json/sources.json', store)
+  def save_sources
+    source_hash = []
+    @sources.each do |source|
+      source_hash << {
+        name: source.name,
+        id: source.id
+      }
+      File.open('./json/sources.json', 'w') { |f| f.puts source_hash.to_json }
+    end
   end
 
   def load_sources
-    return unless File.exist?('./json/sources.json')
-
-    sources = JSON.parse(File.read('json/sources.json'))
-    sources.each do |source|
-      obj = Source.new(*source[1..])
-      obj.id = source.first
-      @sources << obj
+    source_file = File.exist?('./json/games.json') ? File.read('.json//games.json') : '[]'
+    sources_h = JSON.parse(source_file)
+    sources_h.each do |source|
+      source_new = Source.new(source['name'])
+      @sources << source_new
     end
   end
 end
