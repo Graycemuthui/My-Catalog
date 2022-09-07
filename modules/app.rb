@@ -3,6 +3,10 @@ require_relative './author_module'
 require_relative './games_module'
 require_relative '../game'
 require_relative '../author'
+require_relative './book_module'
+require_relative '../book'
+require_relative './labels_module'
+require_relative '../label'
 require_relative '../movie'
 require_relative '../source'
 require_relative './movies_module'
@@ -18,11 +22,12 @@ class Catalog
   include Options
   include Authors
   include Games
+  include BookModule
+  include LabelModule
   include Movies
   include Sources
   include Genres
   include MusicAlbums
-
   attr_reader :books, :music_albums, :movies, :games
 
   def initialize
@@ -30,6 +35,7 @@ class Catalog
     @music_albums = []
     @movies = []
     @games = []
+    @labels = []
     @sources = []
     @genres = []
     load_game
@@ -57,7 +63,9 @@ class Catalog
     case input
 
     when 1
-      puts "\nList @books"
+      # puts "\nList @books"
+      list_books
+
     when 2
       list_music_albums
     else
@@ -84,7 +92,7 @@ class Catalog
       list_genres
 
     when 6
-      list_lables
+      read_labels
     when 7
       list_authors
     when 8
@@ -98,7 +106,8 @@ class Catalog
     case input
 
     when 9
-      puts "\nAdd @Book"
+      # puts "\nAdd @Book"
+      add_book
     when 10
       add_music_album
     when 11
