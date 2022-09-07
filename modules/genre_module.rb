@@ -28,12 +28,13 @@ module Genres
     genre_names = %w[Comedy Thriler]
     genre_names.each do |_genre|
       init << Genre.new(genre_names)
-  def load_genre
-    genre_file = File.exist?('.json/genres.json') ? File.read('.json/genres.json') : '[]'
-    genre_h = JSON.parse(genre_file)
-    genre_h.each do |genre|
-      @genres << Genre.new(genre)
-
+      def load_genre
+        genre_file = File.exist?('.json/genres.json') ? File.read('.json/genres.json') : '[]'
+        genre_h = JSON.parse(genre_file)
+        genre_h.each do |genre|
+          @genres << Genre.new(genre)
+        end
+      end
     end
   end
 end
