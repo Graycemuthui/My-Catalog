@@ -1,21 +1,26 @@
 require_relative './options'
 require_relative './author_module'
 require_relative './games_module'
-require_relative '../game'
-require_relative '../author'
 require_relative './book_module'
-require_relative '../book'
 require_relative './labels_module'
-require_relative '../label'
-require_relative '../movie'
-require_relative '../source'
 require_relative './movies_module'
 require_relative './sources_module'
-require 'date'
 require_relative './genre_module'
 require_relative './music_album_module'
+
+require_relative '../author'
+require_relative '../label'
+require_relative '../source'
 require_relative '../genre'
+
+require_relative '../book'
+require_relative '../movie'
 require_relative '../music_album'
+require_relative '../game'
+
+require_relative './properties'
+
+require 'date'
 require 'json'
 
 class Catalog
@@ -28,6 +33,8 @@ class Catalog
   include Sources
   include Genres
   include MusicAlbums
+  include Properties
+
   attr_reader :books, :music_albums, :movies, :games
 
   def initialize
@@ -38,12 +45,14 @@ class Catalog
     @labels = []
     @sources = []
     @genres = []
+    @authors = []
+    @labels = []
     load_game
+    load_authors
     load_movies
     load_sources
     load_album
     load_genre
-
   end
 
   def act_regarding_input
@@ -54,10 +63,10 @@ class Catalog
         save_authors
         save_games
         save_movies
-        dump_sources
+        save_sources
         save_album
         save_genre
-        
+
         puts 'Thank You for using this app!'
         break
       end
@@ -69,9 +78,7 @@ class Catalog
     case input
 
     when 1
-      # puts "\nList @books"
       list_books
-
     when 2
       list_music_albums
     else
@@ -96,7 +103,6 @@ class Catalog
 
     when 5
       list_genres
-
     when 6
       read_labels
     when 7
@@ -112,7 +118,6 @@ class Catalog
     case input
 
     when 9
-      # puts "\nAdd @Book"
       add_book
     when 10
       add_music_album

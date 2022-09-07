@@ -1,7 +1,7 @@
 require_relative 'item'
 class Source
   attr_reader :id
-  attr_accessor :name, :item
+  attr_accessor :name, :items
 
   def initialize(name)
     @id = Random.rand(1...1000)
@@ -10,7 +10,7 @@ class Source
   end
 
   def add_item(item)
+    @items << item unless @items.include?(item)
     item.source = self
-    @items << item
   end
 end

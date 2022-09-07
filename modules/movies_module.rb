@@ -33,16 +33,12 @@ module Movies
   end
 
   def load_movies
-    data = []
-    file = './json/movies.json'
-    if File.exist?(file)
-      JSON.parse(File.read(file)).each do |movie|
-        data.push(Movie.new(movie['name'], movie['publish_date'], movie['silent']))
-      end
-    else
-      File.write(file, [])
+    movie_file = File.exist?('./json/movies.json') ? File.read('./json/movies.json') : '[]'
+    movie_h = JSON.parse(movie_file)
+    movie_h.each do |movie|
+      movie_new = Movie.new(movie['name'], movie['publish_date'], movie['silent'])
+      @movies << movie_new
     end
-    data
   end
 
   def save_movies
