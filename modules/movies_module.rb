@@ -21,7 +21,6 @@ module Movies
     source = Source.new(s_name)
     @sources.push(source)
 
-    puts 'Music Added successfully'
     @movies << Movie.new(name, publish_date, silent)
     puts 'Movie Added successfully'
   end
