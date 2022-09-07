@@ -25,7 +25,7 @@ module Sources
   end
 
   def load_sources
-    source_file = File.exist?('./json/games.json') ? File.read('.json//games.json') : '[]'
+    source_file = File.exist?('./json/games.json') ? File.read('./json/games.json') : '[]'
     sources_h = JSON.parse(source_file)
     sources_h.each do |source|
       source_new = Source.new(source['name'])
