@@ -29,4 +29,28 @@ module BookModule
     @labels.find { |l| l.title == label_title && l.color == book_color }.add_item(@books.last)
     puts 'Book created successfully!'
   end
+
+  def save_books
+    book_hash = []
+    @books.each do |book|
+      book_hash << {
+        title: book.title,
+        publisher: book.publisher,
+        id: book.id,
+        cover_state: book.cover_state,
+        author: book.author,
+        publish_date: book.publish_date
+      }
+    end
+    File.open('./json/books.json', 'w') { |f| f.puts book_hash.to_json }
+  end
+
+  def load_books
+    book_file = File.exist?('./json/books.json') ? File.read('./json/books.json') : '[]'
+    book_h = JSON.parse(book_file)
+    book_h.each do |book|
+      book_new = Book.new(book['title'], book['author'], book['publisher'], book['cover_state'], book['publish_date'])
+      @books << book_new
+    end
+  end
 end

@@ -8,13 +8,23 @@ module LabelModule
       end
     end
   end
-  #   def add_label
-  #     puts 'Enter the title of the label:'
-  #     title = gets.chomp
-  #     puts 'Enter the color of the label:'
-  #     color = gets.chomp
-  #     label = Label.new(title, color)
-  #     puts 'Label created successfully!'
-  #     @labels << label
-  #   end
+
+  def save_labels
+    label_hash = []
+    @labels.each do |label|
+      label_hash << {
+        title: label.title,
+        color: label.color
+      }
+    end
+    File.open('./json/labels.json', 'w') { |f| f.puts label_hash.to_json }
+  end
+
+  def load_labels
+    label_file = File.exist?('./json/labels.json') ? File.read('./json/labels.json') : '[]'
+    label_h = JSON.parse(label_file)
+    label_h.each do |label|
+      @labels << Label.new(label['title'], label['color'])
+    end
+  end
 end

@@ -53,6 +53,8 @@ class Catalog
     load_sources
     load_album
     load_genre
+    load_books
+    load_labels
   end
 
   def act_regarding_input
@@ -66,6 +68,8 @@ class Catalog
         save_sources
         save_album
         save_genre
+        save_books
+        save_labels
 
         puts 'Thank You for using this app!'
         break
