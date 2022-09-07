@@ -1,5 +1,4 @@
 module Movies
-
   def add_movie
     print 'Movie name: '
     name = gets.chomp
