@@ -5,6 +5,7 @@ require_relative '../game'
 require_relative '../author'
 require_relative '../movie'
 require_relative '../source'
+require_relative '../label'
 require_relative './movies_module'
 require_relative './sources_module'
 require 'date'
@@ -32,7 +33,10 @@ class Catalog
     @games = []
     @sources = []
     @genres = []
+    @authors = []
+    @labels = []
     load_game
+    load_authors
   end
 
   def act_regarding_input
