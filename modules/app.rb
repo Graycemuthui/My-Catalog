@@ -19,12 +19,11 @@ class Catalog
   include Authors
   include Games
   include Movies
-  include Sources 
+  include Sources
   include Genres
   include MusicAlbums
 
   attr_reader :books, :music_albums, :movies, :games
-
 
   def initialize
     @books = []
@@ -33,7 +32,8 @@ class Catalog
     @games = []
     @sources = []
     load_game
-
+    load_movies
+    load_sources
   end
 
   def act_regarding_input
@@ -43,6 +43,8 @@ class Catalog
       if choice == 13
         save_authors
         save_games
+        save_movies
+        dump_sources
         puts 'Thank You for using this app!'
         break
       end
@@ -99,7 +101,7 @@ class Catalog
     when 10
       add_music_album
     when 11
-     add_movie
+      add_movie
     when 12
       add_game
     else

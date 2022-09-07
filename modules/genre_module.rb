@@ -10,8 +10,7 @@ module Genres
   def add_genres()
     init = []
     genre_names = %w[Comedy Thriler]
-    genre_names.each do |genre|
-      genres_names = genre.split[0]
+    genre_names.each do |_genre|
       init << Genre.new(genre_names)
     end
     init
