@@ -31,9 +31,13 @@ class Catalog
     @movies = []
     @games = []
     @sources = []
+    @genres = []
     load_game
     load_movies
     load_sources
+    load_album
+    load_genre
+
   end
 
   def act_regarding_input
@@ -45,6 +49,9 @@ class Catalog
         save_games
         save_movies
         dump_sources
+        save_album
+        save_genre
+        
         puts 'Thank You for using this app!'
         break
       end
