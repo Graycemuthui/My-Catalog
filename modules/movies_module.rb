@@ -34,7 +34,7 @@ module Movies
 
   def load_movies
     data = []
-    file = './movies.json'
+    file = './json/movies.json'
     if File.exist?(file)
       JSON.parse(File.read(file)).each do |movie|
         data.push(Movie.new(movie['name'], movie['publish_date'], movie['silent']))
@@ -53,7 +53,7 @@ module Movies
         publish_date: mov.publish_date,
         silent: mov.silent
       }
-      File.open('./movies.json', 'w') { |f| f.puts movies_hash.to_json }
+      File.open('./json/movies.json', 'w') { |f| f.puts movies_hash.to_json }
     end
   end
 end
