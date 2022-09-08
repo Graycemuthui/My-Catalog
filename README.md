@@ -37,6 +37,12 @@ I am an aspiring web developer from Serbia.
 - Twitter: [@sanjaTwit](https://twitter.com/SanjaMandic42)
 - LinkedIn: [@sanjaIn](https://linkedin.com/in/sanja-mandic-823995a2/)
 
+👤 **Kiprotich Kimutai**
+
+- GitHub: [@Kimutai01](https://github.com/Kimutai01)
+- Twitter: [@Kimutai_01](https://twitter.com/Kimutai_01?s=09)
+- LinkedIn: [@kiprotichkimutai](https://www.linkedin.com/m/in/kimutai-kiprotich-1b5045216)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
