@@ -2,7 +2,7 @@ require_relative '../book'
 
 describe Book do
   before :each do
-    @book = Book.new 'The ruby guide', 'Kim', 'Publisher', 'Good', '2022-01-01'
+    @book = Book.new 'Publisher', 'Good', '2022-01-01'
   end
 
   context 'when testing the Book class' do

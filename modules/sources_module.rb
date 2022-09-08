@@ -20,12 +20,12 @@ module Sources
         name: source.name,
         id: source.id
       }
-      File.open('./json/sources.json', 'w') { |f| f.puts source_hash.to_json }
     end
+    File.open('./json/sources.json', 'w') { |f| f.puts source_hash.to_json }
   end
 
   def load_sources
-    source_file = File.exist?('./json/games.json') ? File.read('./json/games.json') : '[]'
+    source_file = File.exist?('./json/source.json') ? File.read('./json/source.json') : '[]'
     sources_h = JSON.parse(source_file)
     sources_h.each do |source|
       source_new = Source.new(source['name'])

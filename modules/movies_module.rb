@@ -2,8 +2,6 @@ module Movies
   def add_movie
     print 'Movie name: '
     name = gets.chomp
-    print 'Source: '
-    s_name = gets.chomp
     print 'Published date: '
     publish_date = gets.chomp
     print 'Movie is silent? [Y/N]'
@@ -16,11 +14,9 @@ module Movies
     else
       puts 'Invalid option \n'
     end
-
-    source = Source.new(s_name)
-    @sources.push(source)
-
-    @movies << Movie.new(name, publish_date, silent)
+    movie = Movie.new(name, publish_date, silent)
+    @movies << movie
+    add_properties(movie)
     puts 'Movie Added successfully'
   end
 
@@ -37,6 +33,7 @@ module Movies
     movie_h = JSON.parse(movie_file)
     movie_h.each do |movie|
       movie_new = Movie.new(movie['name'], movie['publish_date'], movie['silent'])
+      load_properties(movie, movie_new)
       @movies << movie_new
     end
   end
@@ -47,9 +44,15 @@ module Movies
       movies_hash << {
         name: mov.name,
         publish_date: mov.publish_date,
-        silent: mov.silent
+        silent: mov.silent,
+        author_first_name: mov.author.first_name,
+        author_last_name: mov.author.last_name,
+        label_title: mov.label.title,
+        label_color: mov.label.color,
+        genre: mov.genre.names,
+        source: mov.source.name
       }
-      File.open('./json/movies.json', 'w') { |f| f.puts movies_hash.to_json }
     end
+    File.open('./json/movies.json', 'w') { |f| f.puts movies_hash.to_json }
   end
 end
